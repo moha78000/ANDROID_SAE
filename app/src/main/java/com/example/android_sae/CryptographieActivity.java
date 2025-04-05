@@ -16,7 +16,7 @@ import androidx.core.view.WindowInsetsCompat;
 public class CryptographieActivity extends AppCompatActivity {
 
     // Déclaration des composants de l'interface
-    EditText inputMessage, inputKey;
+    EditText inputMessage;
     Button btnChiffrer, btnDechiffrer;
     TextView resultCrypto;
 
@@ -39,7 +39,6 @@ public class CryptographieActivity extends AppCompatActivity {
 
         // Initialisation des composants de l'interface
         inputMessage = findViewById(R.id.inputMessage);
-        inputKey = findViewById(R.id.inputKey);
         btnChiffrer = findViewById(R.id.btnChiffrer);
         btnDechiffrer = findViewById(R.id.btnDechiffrer);
         resultCrypto = findViewById(R.id.resultCrypto);
@@ -47,37 +46,29 @@ public class CryptographieActivity extends AppCompatActivity {
         // Configuration du bouton "Chiffrer"
         btnChiffrer.setOnClickListener(v -> {
             String msg = inputMessage.getText().toString();
-            String key = inputKey.getText().toString();
 
             // Vérification des champs vides avant le chiffrement
             if (msg.isEmpty()) {
                 inputMessage.setError("Veuillez entrer un message.");
                 return;
             }
-            if (key.isEmpty()) {
-                inputKey.setError("Veuillez entrer une clé.");
-                return;
-            }
 
-            resultCrypto.setText(CryptoCalculator.encrypt(msg, key));
+            // Utilisation de CryptoCalculator pour chiffrer le message
+            resultCrypto.setText(CryptoCalculator.encrypt(msg));
         });
 
         // Configuration du bouton "Déchiffrer"
         btnDechiffrer.setOnClickListener(v -> {
             String msg = inputMessage.getText().toString();
-            String key = inputKey.getText().toString();
 
             // Vérification des champs vides avant le déchiffrement
             if (msg.isEmpty()) {
                 inputMessage.setError("Veuillez entrer un message.");
                 return;
             }
-            if (key.isEmpty()) {
-                inputKey.setError("Veuillez entrer une clé.");
-                return;
-            }
 
-            resultCrypto.setText(CryptoCalculator.decrypt(msg, key));
+            // Utilisation de CryptoCalculator pour déchiffrer le message
+            resultCrypto.setText(CryptoCalculator.decrypt(msg));  // Le paramètre 'key' n'est pas nécessaire ici
         });
 
         btn2 = findViewById(R.id.button2);
@@ -88,7 +79,6 @@ public class CryptographieActivity extends AppCompatActivity {
                 // Création de l'Intent pour revenir à l'accueil
                 Intent intent = new Intent(CryptographieActivity.this, MainActivity.class);
                 startActivity(intent); // Lancement de la nouvelle activité
-
             }
         });
     }
