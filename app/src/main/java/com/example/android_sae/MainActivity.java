@@ -27,13 +27,14 @@ public class MainActivity extends AppCompatActivity {
         });
         liste1 = findViewById(R.id.liste);
         String[] rubriques = {"Module Polynôme", "Module Cryptographie ADFGVX", "Exit"};
-        liste1.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, rubriques));
+
+        // Utiliser notre layout personnalisé pour les éléments de la ListView
+        liste1.setAdapter(new ArrayAdapter<>(this, R.layout.simple_list_item_white, rubriques));
+
         liste1.setOnItemClickListener((parent, view, position, id) -> {
             if (position == 0) startActivity(new Intent(this, PolynomeActivity.class));
-           else if (position == 1) startActivity(new Intent(this, CryptographieActivity.class));
+            else if (position == 1) startActivity(new Intent(this, CryptographieActivity.class));
             else finishAffinity(); // Ferme toutes les activités et quitte l'application
         });
     }
-
-
 }
