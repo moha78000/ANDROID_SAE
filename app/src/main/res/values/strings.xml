@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">android_sae</string>
+    <string name="app_name">Mathémagie</string>
+    <string name="option">option</string>
+    <string name="polynome">Polynôme</string>
+    <string name="chiffrement">Chiffrement</string>
+    <string name="accueil">Accueil</string>
+    <string name="exit">Exit</string>
 </resources>
